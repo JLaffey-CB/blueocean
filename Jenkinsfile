@@ -2,8 +2,17 @@ pipeline {
   agent any
   stages {
     stage('Hello') {
-      steps {
-        echo 'Hello from Blue Ocean and Jenkins'
+      parallel {
+        stage('Hello') {
+          steps {
+            echo 'Hello from Blue Ocean and Jenkins'
+          }
+        }
+        stage('StageP') {
+          steps {
+            sh 'ls -all'
+          }
+        }
       }
     }
   }
